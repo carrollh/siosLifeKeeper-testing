@@ -4,25 +4,28 @@
   "parameters": {
     "newStorageAccountName": {
       "type": "string",
+			"defaultValue": "lifekeeper",
       "metadata": {
         "description": "Storage Account to create for the disks"
       }
     },
     "adminUserName": {
       "type": "string",
-      "metadata": {
+      "defaultValue": "siosadmin",
+			"metadata": {
         "description": "Admin username"
       }
     },
     "adminPassword": {
       "type": "securestring",
+			"defaultValue": "SIOS!5105",
       "metadata": {
         "description": "Admin password"
       }
     },
     "scaleNumber": {
       "type": "int",
-      "defaultValue": 3,
+      "defaultValue": 2,
       "metadata": {
         "description": "Number of Zookeper nodes to provision"
       }
