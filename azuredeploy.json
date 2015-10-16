@@ -56,7 +56,7 @@
       "apiVersion": "2015-01-01",
       "location": "[variables('location')]",
       "properties": {
-        "accountType": "[parameters('storageAccountType')]"
+        "accountType": "[variables('storageAccountType')]"
       }
     },
     {
@@ -134,7 +134,7 @@
     {
       "apiVersion": "2015-01-01",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[concat(parameters('vmName'), copyIndex())]",
+      "name": "[concat(variables('vmName'), copyIndex())]",
       "location": "[variables('location')]",
       "copy": {
         "name": "VM loop",
@@ -150,18 +150,18 @@
           "id": "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySetName'))]"
         },
         "hardwareProfile": {
-          "vmSize": "[parameters('vmSize')]"
+          "vmSize": "[variables('vmSize')]"
         },
         "osProfile": {
-          "computername": "[concat(parameters('vmName'), copyIndex())]",
+          "computername": "[concat(variables('vmName'), copyIndex())]",
           "adminUsername": "[parameters('adminUserName')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
         "storageProfile": {
           "imageReference": {
-            "publisher": "[parameters('imagePublisher')]",
-            "offer": "[parameters('imageOffer')]",
-            "sku": "[parameters('imageSKU')]",
+            "publisher": "[variables('imagePublisher')]",
+            "offer": "[variables('imageOffer')]",
+            "sku": "[variables('imageSKU')]",
             "version": "latest"
           },
           "osDisk": {
@@ -184,7 +184,7 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('vmName'), copyIndex(),'/', variables('vmExtensionName'))]",
+      "name": "[concat(variables('vmName'), copyIndex(),'/', variables('vmExtensionName'))]",
       "apiVersion": "2015-01-01",
       "location": "[variables('location')]",
       "copy": {
@@ -192,7 +192,7 @@
         "count": "[parameters('scaleNumber')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'), copyIndex())]"
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'), copyIndex())]"
       ],
       "properties": {
         "publisher": "Microsoft.OSTCExtensions",
