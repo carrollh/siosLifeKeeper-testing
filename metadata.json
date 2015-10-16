@@ -1,0 +1,7 @@
+{
+  "itemDisplayName": "Sios LifeKeeper cluster on CentOS VMs",
+  "description": "This template creates a 'n' node Sios LifeKeeper cluster on CentOS VMs. Use the scaleNumber parameter to specify the number of nodes in this cluster",
+  "summary": "Deploy a Sios LifeKeeper cluster on CentOS VMs",
+  "githubUsername": "carrollh",
+  "dateUpdated": "2015-10-16"
+}
