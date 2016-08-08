@@ -2,9 +2,18 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+	"imagePublisher": {
+      "value": "Suse"
+	},
+	"imageOffer": {
+      "value": "SLES"
+	},
+	"imageSku": {
+      "value": "11-SP4"
+	},
     "newStorageAccountName": {
-      "value": "lifekeeper",
-		}
+      "value": "lifekeeper"
+	},
     "adminUserName": {
       "value": "siosadmin"
     },

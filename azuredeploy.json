@@ -2,6 +2,44 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+	"imagePublisher": {
+      "type": "string",
+      "defaultValue": "Suse",
+      "allowedValues": [
+        "Suse",
+        "openlogic"
+      ],
+      "metadata": {
+        "description": "The publisher for the Linux image you want to deploy. Must match offer and sku."
+      }
+    },
+	"imageOffer": {
+      "type": "string",
+      "defaultValue": "SLES",
+      "allowedValues": [
+        "SLES",
+        "CentOS"
+      ],
+      "metadata": {
+        "description": "The offer for the Linux image you want to deploy. Must match publisher and sku."
+      }
+    },
+	"imageSKU": {
+      "type": "string",
+      "defaultValue": "11-SP4",
+      "allowedValues": [
+        "11-SP4",
+        "12",
+		"12-SP1",
+		"6.8",
+		"7.0",
+		"7.2",
+		"7.2n"
+      ],
+      "metadata": {
+        "description": "The offer for the Linux image you want to deploy. Must match publisher and offer."
+      }
+    },
     "newStorageAccountName": {
       "type": "string",
 			"defaultValue": "lifekeeper",
@@ -32,7 +70,7 @@
     }
   },
   "variables": {
-		"location": "[resourceGroup().location]",
+	"location": "[resourceGroup().location]",
     "availabilitySetName": "lifekeeperAS",
     "virtualNetworkName": "lifekeeperVNET",
     "vnetAddressPrefix": "10.0.0.0/16",
@@ -45,9 +83,6 @@
     "storageAccountType": "Standard_LRS",
     "vmName": "lifekeeperVM",
     "vmSize": "Standard_A1",
-    "imagePublisher": "Suse",
-    "imageOffer": "SLES",
-    "imageSKU": "11-SP4",
     "customScriptFilePath": "https://raw.githubusercontent.com/carrollh/siosLifeKeeper-testing/master/lifekeeper.sh",
     "customScriptCommandToExecute": "sh lifekeeper.sh ",
     "vmExtensionName": "lifekeeperExtension"
@@ -162,9 +197,9 @@
         },
         "storageProfile": {
           "imageReference": {
-            "publisher": "[variables('imagePublisher')]",
-            "offer": "[variables('imageOffer')]",
-            "sku": "[variables('imageSKU')]",
+            "publisher": "[parameters('imagePublisher')]",
+            "offer": "[parameters('imageOffer')]",
+            "sku": "[parameters('imageSKU')]",
             "version": "latest"
           },
           "osDisk": {
