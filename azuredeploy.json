@@ -2,10 +2,11 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-	"imagePublisher": {
+  "imagePublisher": {
       "type": "string",
-      "defaultValue": "Suse",
+      "defaultValue": "RedHat",
       "allowedValues": [
+        "RedHat",
         "Suse",
         "openlogic"
       ],
@@ -13,10 +14,11 @@
         "description": "The publisher for the Linux image you want to deploy. Must match offer and sku."
       }
     },
-	"imageOffer": {
+  "imageOffer": {
       "type": "string",
-      "defaultValue": "SLES",
+      "defaultValue": "RHEL",
       "allowedValues": [
+        "RHEL",
         "SLES",
         "CentOS"
       ],
@@ -24,17 +26,18 @@
         "description": "The offer for the Linux image you want to deploy. Must match publisher and sku."
       }
     },
-	"imageSKU": {
+  "imageSKU": {
       "type": "string",
-      "defaultValue": "11-SP4",
+      "defaultValue": "7.7",
       "allowedValues": [
+        "7.7",
         "11-SP4",
         "12",
-		"12-SP1",
-		"6.8",
-		"7.0",
-		"7.2",
-		"7.2n"
+        "12-SP1",
+        "6.8",
+        "7.0",
+        "7.2",
+        "7.2n"
       ],
       "metadata": {
         "description": "The offer for the Linux image you want to deploy. Must match publisher and offer."
@@ -42,7 +45,7 @@
     },
     "newStorageAccountName": {
       "type": "string",
-			"defaultValue": "lifekeeper",
+      "defaultValue": "lifekeeper",
       "metadata": {
         "description": "Storage Account to create for the disks"
       }
@@ -50,13 +53,13 @@
     "adminUserName": {
       "type": "string",
       "defaultValue": "siosadmin",
-			"metadata": {
+      "metadata": {
         "description": "Admin username"
       }
     },
     "adminPassword": {
       "type": "securestring",
-			"defaultValue": "SIOS!5105",
+      "defaultValue": "SIOS!5105",
       "metadata": {
         "description": "Admin password"
       }
@@ -70,7 +73,7 @@
     }
   },
   "variables": {
-	"location": "[resourceGroup().location]",
+  "location": "[resourceGroup().location]",
     "availabilitySetName": "lifekeeperAS",
     "virtualNetworkName": "lifekeeperVNET",
     "vnetAddressPrefix": "10.0.0.0/16",
